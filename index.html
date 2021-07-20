@@ -29,9 +29,10 @@ img {
     <a href="#data" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Datasets</a>
     <a href="#software" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Software</a>
   <!--  <a href="#docker" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Container Image</a>
-    <a href="#prov" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Provenance Traces</a>
-    <a href="#authors" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About the authors</a>-->
-    <a href="#bib" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Bibliography</a>
+    <a href="#prov" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Provenance Traces</a>-->
+  <a href="#bib" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Bibliography</a>
+  <a href="#authors" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About the authors</a>
+
   </div>
 </nav>
 
@@ -58,12 +59,12 @@ img {
   <div class="w3-container" id="summary" style="margin-top:15px">
     <!--<h1 class="w3-xxxlarge w3-text-green"><b>Services.</b></h1>-->
     <hr style="width:50px;border:5px solid green" class="w3-round">
-    <p>This page provides pointers to the materials (datasets, software and notebooks) used in a paper currently <strong>under review</strong> (more details about the publication will be announced at a later stage)</p>
+    <p>This page provides pointers to the materials (datasets, software and notebooks) used in a paper currently <strong>under review</strong> </p>
 
     <p><strong>Summary</strong>:The increasing adoption of Wikidata <a href="#wd">[1]</a> in a wide range of applications (entity linking, question answering, link prediction, etc.) motivates the need for high-quality knowledge to support them. However, we currently lack an understanding of the quality of the semantic infor-mation captured in Wikidata. In this paper, we explore two notions of data quality in Wikidata: 1) a community-based notion which captures the ongoing community consensus on the recorded knowledge, assumingthat statements that have been removed and not added back are implicitly agreed to be of low quality by the community; and 2) a constraint-based notion which encodes Wikidata constraints efficiently, and detects their violations in the data. Our analysis reveals that low-quality state-ments can be detected with both strategies, while their cause ranges frommodeling errors and factual errors, to constraint incompleteness. These findings can complement ongoing efforts by the Wikidata community toimprove data quality based on games and suggestions, aiming to makeit easier for users and editors to find and correct mistakes.</p>
-<!--
-    <p>This page and the materials described on it (excluding external references) is available at a <a href="https://w3id.org/">permanent URL</a>. </p>
-  -->
+
+    <p>This page and the materials described on it (excluding external references) is available at a permanent URL: <a href="https://w3id.org/wd_quality">https://w3id.org/wd_quality</a>. </p>
+
   </div>
 
 
@@ -77,7 +78,7 @@ img {
       <li><a hred="https://drive.google.com/file/d/1cGyBR2oFczdt7VNsr3w0g2LqnnhgER4o/view?usp=sharing">Labels file - Wikidata dump of Dec 7, 2020</a>, File with all labels of nodes used in the analysis
       <li><a href="https://drive.google.com/file/d/1XClKNId4E2uzvYZJzBCR4p9BEk0VOF4N/view?usp=sharing">Claim properties file - Wikidata dump of Dec 7, 2020</a> File used to determine constraints.</li>
       <li><a href="https://drive.google.com/file/d/1wv781zKN188ISWjBWWrXl8fnlfcXg-GX/view?usp=sharing">Qualifiers file - Wikidata dump of Dec 7, 2020</a>. File used to fetch more details on the constraints for each property.</li>
-      <li><a href="https://drive.google.com/file/d/1TQP1rADdvhDjsvBpLzSE9Bx3n73wf-Md/view?usp=sharing">Wikidata permanently removed statements from 2014 to Jan 2021</a>. File that was calculated by downloading 311 weekly Wikidata dumps from the Internet Archive and community contributors; calculating the removed statements between each pair of dumps, and then assessing that any previous deleted statements was still not present in the most recent dump.</li>
+      <li><a href="https://doi.org/10.5281/zenodo.4686804">Wikidata permanently removed statements from 2014 to Jan 2021</a>. File that was calculated by downloading 311 weekly Wikidata dumps from the Internet Archive and community contributors; calculating the removed statements between each pair of dumps, and then assessing that any previous deleted statements was still not present in the most recent dump.</li>
 
       <li><a href="https://drive.google.com/file/d/1A6QKWpx_xj9yW1GBFNuc-JD2sHODva3o/view?usp=sharing">Wikidata deprecated statements by Jan 2021</a>. All statements tagged as deprecated in the Knowledge Graph.</li>
 
@@ -107,7 +108,7 @@ img {
     The pointers for using the main software used can be found below:
     <ul>
       <li><a href="https://github.com/usc-isi-i2/kgtk/">The Knowledge Graph Toolkit</a>, a framework for large Knowledge Graph manipulation. This is an external tool used by the authors for the analysis.</li>
-      <li><a href="notebooks_wd_quality.zip">Zip with all the Jupyter Notebooks</a> used in the analysis, i.e., removed statement analysis, constraint validation and deprecated statement analysis. Some of the notebooks have relative paths, pointing to the datasets specified above.</li>
+      <li><a href="https://github.com/usc-isi-i2/wd-quality">Repository with the Jupyter Notebooks</a> used in the analysis, i.e., removed statement analysis, constraint validation and deprecated statement analysis. Some of the notebooks have relative paths, pointing to the datasets specified above.</li>
 
     </ul>
   </div>
@@ -125,8 +126,64 @@ img {
   <h1 class="w3-xxxlarge w3-text-green"><b>About the authors.</b></h1>
   <hr style="width:50px;border:5px solid green" class="w3-round">
   <div class="w3-row-padding">
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+          <img src="images/kartik.jpeg" alt="Kartik Shenoy" style="width:100px;padding-top: 10px;">
+        <div class="w3-container">
+          <h3>Kartik Shenoy</h3>
+          <p class="w3-opacity">Student worker</p>
+          <p>Master student at the University of Southern California. </p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/filip.jpeg" alt="Filip Ilievsky" style="width:100px;padding-top: 10px;">
+        <div class="w3-container">
+          <h3>Filip Ilievsky</h3>
+          <p class="w3-opacity">Research Scientists</p>
+          <p>Researcher at the Information Sciences Institute, University of Southern California.</p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/dani.png" alt="Daniel Garijo" style="width:100px;padding-top: 10px;">
+        <div class="w3-container">
+          <h3><a href="https://dgarijo.com">Daniel Garijo</a></h3>
+          <p class="w3-opacity">Distinguished Researcher</p>
+          <p>Researcher at the Universidad Politécnica de Madrid.</p>
+        </div>
+      </div>
+    </div>
 
-  Authors are omitted as per the submission requirements.
+  </div>
+  <div class="w3-row-padding">
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/danielS.jpeg" alt="Daniel Schwabe" style="width:100px;padding-top: 10px;">
+        <div class="w3-container">
+          <h3>Daniel Schwabe</h3>
+          <p class="w3-opacity"> Researcher</p>
+          <p>Professor at Pontificia Universidade Católica Rio de Janeiro.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/pedro.jpg" alt="Pedro Szekely" style="width:100px;padding-top: 10px;">
+        <div class="w3-container">
+          <h3>Pedro Szekely</h3>
+          <p class="w3-opacity">Research Director</p>
+          <p>Research Director at the center on Knowledge Graphs, Information Sciences Institute, University of Southern California.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
 
   </div>
 
