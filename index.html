@@ -108,9 +108,61 @@ img {
     The pointers for using the main software used can be found below:
     <ul>
       <li><a href="https://github.com/usc-isi-i2/kgtk/">The Knowledge Graph Toolkit</a>, a framework for large Knowledge Graph manipulation. This is an external tool used by the authors for the analysis.</li>
-      <li><a href="https://github.com/usc-isi-i2/wd-quality">Repository with the Jupyter Notebooks</a> used in the analysis, i.e., removed statement analysis, constraint validation and deprecated statement analysis. Some of the notebooks have relative paths, pointing to the datasets specified above.</li>
-
+      <li><a href="https://github.com/usc-isi-i2/wd-quality">Repository with the Jupyter Notebooks</a> used in the analysis, i.e., removed statement analysis, constraint validation and deprecated statement analysis. Some of the notebooks have relative paths, pointing to the datasets specified above, and should be adapted in order to work correclty.</li>
+      <li><a href="https://github.com/usc-isi-i2/wd-quality/tree/main/Scripts">Constraint validation queries</a>. These are the queries needed  to reproduce the contraint validation analysis on Wikidata. Note that these constraints need a unique folder configuration of the repository to work, which is found in the <a href="https://github.com/usc-isi-i2/wd-quality#sample-queries">readme file</a></li>
     </ul>
+
+    <h3>An instantiated query template in detail</h3>
+    The following snippet explains step by step how one of the item-requires-statement constraint is validated in Wikidata:
+    <pre>
+# Item requires statement constraint on property P1321:
+# place of origin (Switzerland).
+# The constraint indicates that those with property
+# P1321 should be (P31) human (Q5) and live in (P27) Switzerland,
+# with the exception of Hans von Flachslanden (Q1583384)
+kgtk query            # This query retrieves the valid entities
+  -i claims.P1321.tsv # Statements with property P1321
+     claims.P31.tsv   # Statements with property P31
+     claims.P27.tsv   # Statements with property P27
+  --match
+    'P1321: (node1)-[nodeProp]->(node2),
+     P31: (node1)-[]->(node2_P31),
+     P27: (node1)-[]->(node2_P27)'
+  --where 'node2_P31 in ["Q5"] # Constraint indicates the property subject has
+                               # to be human (Q5)
+    and node2_P27 in ["Q39"]'  # Constraint indicates the property subject
+                               # should have country
+                               # of citizenship (P27) Sweden (Q39)
+  --return 'distinct nodeProp.id, node1 as `node1`,
+    nodeProp.label as `label`,
+    node2 as `node2`'
+  -o claims.P1321.correct_wo_exceptions.tsv
+  --graph-cache cache.db;
+
+kgtk --debug ifnotexists      # This query retrieves the violations of P1321.
+  -i claims.P1321.tsv
+  --filter-on claims.P1321.correct_wo_exceptions.tsv
+  -o claims.P1321.incorrect_wo_exceptions.tsv
+
+kgtk --debug query   # This query calculates the exceptions to the
+                     # constraint, i.e., Hans von Flachslanden (Q1583384)
+  -i claims.P1321.incorrect_wo_exceptions.tsv
+  --match
+    '(node1)-[]->()' --where 'node1 in ["Q1583384"]'
+  -o claims.P1321.incorrect_w_exceptions.tsv
+  --graph-cache cache.db;
+
+kgtk --debug ifnotexists  # Filter exceptions from incorrect file
+  -i claims.P1321.incorrect_wo_exceptions.tsv
+  --filter-on claims.P1321.incorrect_w_exceptions.tsv
+  -o claims.P1321.incorrect.tsv;
+
+kgtk cat   # Aggregate correct results.
+  -i claims.P1321.correct_wo_exceptions.tsv
+     claims.P1321.incorrect_w_exceptions.tsv
+  -o claims.P1321.correct.tsv
+</pre>
+
   </div>
 
   <div class="w3-container" id="bib" style="margin-top:75px">
@@ -138,10 +190,10 @@ img {
     </div>
     <div class="w3-col m4 w3-margin-bottom">
       <div class="w3-light-grey">
-        <img src="images/filip.jpeg" alt="Filip Ilievsky" style="width:100px;padding-top: 10px;">
+        <img src="images/filip.jpeg" alt="Filip Ilievski" style="width:100px;padding-top: 10px;">
         <div class="w3-container">
-          <h3>Filip Ilievsky</h3>
-          <p class="w3-opacity">Research Scientists</p>
+          <h3>Filip Ilievski</h3>
+          <p class="w3-opacity">Research Scientist</p>
           <p>Researcher at the Information Sciences Institute, University of Southern California.</p>
         </div>
       </div>
@@ -164,8 +216,8 @@ img {
         <img src="images/danielS.jpeg" alt="Daniel Schwabe" style="width:100px;padding-top: 10px;">
         <div class="w3-container">
           <h3>Daniel Schwabe</h3>
-          <p class="w3-opacity"> Researcher</p>
-          <p>Professor at Pontificia Universidade Católica Rio de Janeiro.</p>
+          <p class="w3-opacity"> Invited researcher</p>
+          <p>Professor at Pontificia Universidade Católica Rio de Janeiro and invited researcher at the Information Sciences Institute, University of Southern California.</p>
         </div>
       </div>
     </div>
