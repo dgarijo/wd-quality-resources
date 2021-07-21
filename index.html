@@ -64,6 +64,7 @@ img {
     <p><strong>Summary</strong>:The increasing adoption of Wikidata <a href="#wd">[1]</a> in a wide range of applications (entity linking, question answering, link prediction, etc.) motivates the need for high-quality knowledge to support them. However, we currently lack an understanding of the quality of the semantic infor-mation captured in Wikidata. In this paper, we explore two notions of data quality in Wikidata: 1) a community-based notion which captures the ongoing community consensus on the recorded knowledge, assumingthat statements that have been removed and not added back are implicitly agreed to be of low quality by the community; and 2) a constraint-based notion which encodes Wikidata constraints efficiently, and detects their violations in the data. Our analysis reveals that low-quality state-ments can be detected with both strategies, while their cause ranges frommodeling errors and factual errors, to constraint incompleteness. These findings can complement ongoing efforts by the Wikidata community toimprove data quality based on games and suggestions, aiming to makeit easier for users and editors to find and correct mistakes.</p>
 
     <p>This page and the materials described on it (excluding external references) is available at a permanent URL: <a href="https://w3id.org/wd_quality">https://w3id.org/wd_quality</a>. </p>
+    <p>A preprint of the paper is available in Arxiv: <a href="https://arxiv.org/abs/2107.00156">https://arxiv.org/abs/2107.00156</a></p>
 
   </div>
 
@@ -72,33 +73,35 @@ img {
     <h1 class="w3-xxxlarge w3-text-green"><b>Datasets.</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
     <h3>Input Datasets</h3>
-    We used the following datasets for our paper. We will deposit them in Zenodo upon paper acceptance (in order to preserve annonimity requirements). We note that some of the files may not have the same source date, as we performed the analysis as new data became available. However, since Wikidata is continouslu evolving, all files are sufficiently close in time so as to be compatible with one another.
+    We used the following datasets for our paper. We note that some of the files may not have the same source date, as we performed the analysis as new data became available. However, since Wikidata is continously evolving, all files are sufficiently close in time so as to be compatible with one another.
     <ul>
-      <li><a href="https://drive.google.com/file/d/18BicbVoQ8sbZliEsO4KkblA1h6DSjLnA/view?usp=sharing">Claims file - Wikidata dump of Dec 7, 2020</a>. Reference dump containing the `claims.tsv.gz` file with 1.15B statements, used for finding constraint violations. </li>
-      <li><a hred="https://drive.google.com/file/d/1cGyBR2oFczdt7VNsr3w0g2LqnnhgER4o/view?usp=sharing">Labels file - Wikidata dump of Dec 7, 2020</a>, File with all labels of nodes used in the analysis
-      <li><a href="https://drive.google.com/file/d/1XClKNId4E2uzvYZJzBCR4p9BEk0VOF4N/view?usp=sharing">Claim properties file - Wikidata dump of Dec 7, 2020</a> File used to determine constraints.</li>
-      <li><a href="https://drive.google.com/file/d/1wv781zKN188ISWjBWWrXl8fnlfcXg-GX/view?usp=sharing">Qualifiers file - Wikidata dump of Dec 7, 2020</a>. File used to fetch more details on the constraints for each property.</li>
+      <li><a href="http://doi.org/10.5281/zenodo.5120254">Claims file - Wikidata dump of Dec 7, 2020</a>. Reference dump containing the `claims.tsv.gz` file with 1.15B statements, used for finding constraint violations. </li>
+      <li><a href="http://doi.org/10.5281/zenodo.5120231">Labels file - Wikidata dump of Dec 7, 2020</a>, File with all labels of nodes used in the analysis
+      <li><a href="https://zenodo.org/record/5120200/files/claims.properties.tsv.gz.F6a2ur?download=1">Claim properties file - Wikidata dump of Dec 7, 2020</a> File used to determine constraints. DOI: <a href="http://doi.org/10.5281/zenodo.5120200">http://doi.org/10.5281/zenodo.5120200</a></li>
+      <li><a href="https://zenodo.org/record/5120200/files/qualifiers.properties.tsv.gz.jntdzr?download=1">Qualifiers file - Wikidata dump of Dec 7, 2020</a>. File used to fetch more details on the constraints for each property. DOI: <a href="http://doi.org/10.5281/zenodo.5120200">http://doi.org/10.5281/zenodo.5120200</a> (both this file and the previous one are aggregated in the collection identified by the same DOI)</li>
       <li><a href="https://doi.org/10.5281/zenodo.4686804">Wikidata permanently removed statements from 2014 to Jan 2021</a>. File that was calculated by downloading 311 weekly Wikidata dumps from the Internet Archive and community contributors; calculating the removed statements between each pair of dumps, and then assessing that any previous deleted statements was still not present in the most recent dump.</li>
 
-      <li><a href="https://drive.google.com/file/d/1A6QKWpx_xj9yW1GBFNuc-JD2sHODva3o/view?usp=sharing">Wikidata deprecated statements by Jan 2021</a>. All statements tagged as deprecated in the Knowledge Graph.</li>
+      <li><a href="http://doi.org/10.5281/zenodo.5120117">Wikidata deprecated statements by Jan 2021</a>. All statements tagged as deprecated in the Knowledge Graph.</li>
 
-      <li>Wikidata instanceOf, subclassOf, isa-relation dumps of Feb 15, 2021</a>. The combination of these files is used to determine the ancestors of each node at 1 or more levels above it.</li>
+      <li>Wikidata instanceOf, subclassOf, isa-relation dumps of Feb 15, 2021</a>. The combination of these files is used to determine the ancestors of each node at 1 or more levels above it.
+      All these files are accessible under DOI: <a href="https://doi.org/10.5281/zenodo.5120050">https://doi.org/10.5281/zenodo.5120050</a></li>
       <ul></li>
-        <li><a href="https://drive.google.com/file/d/1XB_i1nWTQffmLx6Iid8GBbKcaXx7v0Xc/view?usp=sharing">P279 (subclass of)</a></li>
-        <li><a href="https://drive.google.com/file/d/1r5gAIVYtVY9apo4NRZTmbIzq_M2fBloS/view?usp=sharing">P31 (instance of)</a></li>
-        <li><a href="https://drive.google.com/file/d/1jHQ1z5sLET2ifQoPXMv3OBH7qvpLU1ws/view?usp=sharing">isa (instance of or subclass of)</a></li>
-        <li><a href="https://drive.google.com/file/d/17hmc2UKpt_VujbjH-w5icGJCQtXDBfk6/view?usp=sharing">P279 star (recursive subclass of)</a></li>
+        <li><a href="https://zenodo.org/record/5120051/files/derived.P279.tsv.gz?download=1">P279 (subclass of)</a></li>
+        <li><a href="https://zenodo.org/record/5120051/files/derived.P31.tsv.gz?download=1">P31 (instance of)</a></li>
+        <li><a href="https://zenodo.org/record/5120051/files/derived.isa.tsv.gz?download=1">isa (instance of or subclass of)</a></li>
+        <li><a href="https://zenodo.org/record/5120051/files/derived.P279star.tsv.gz?download=1">P279 star (recursive subclass of)</a></li>
       </ul>
 
 
     </ul>
 
-    <!--
-    <h3>Outputs</h3>
+<!--
+    <h3>Output datasets</h3>
+    <p>The notebooks generate constraint violation sets per property, which can be accessed in the following links:</p>
     <ul>
       <li>Point to each here (as in paper)</li>
     </ul>
-  -->
+-->
 
   </div>
 
@@ -108,12 +111,12 @@ img {
     The pointers for using the main software used can be found below:
     <ul>
       <li><a href="https://github.com/usc-isi-i2/kgtk/">The Knowledge Graph Toolkit</a>, a framework for large Knowledge Graph manipulation. This is an external tool used by the authors for the analysis.</li>
-      <li><a href="https://github.com/usc-isi-i2/wd-quality">Repository with the Jupyter Notebooks</a> used in the analysis, i.e., removed statement analysis, constraint validation and deprecated statement analysis. Some of the notebooks have relative paths, pointing to the datasets specified above, and should be adapted in order to work correclty.</li>
+      <li><a href="https://github.com/usc-isi-i2/wd-quality">Repository with the Jupyter Notebooks</a> used in the analysis, i.e., removed statement analysis, constraint validation and deprecated statement analysis. Some of the notebooks have relative paths, pointing to the datasets specified above, and should be adapted in order to work correclty. The release of this code used for the paper is accessible in <a href="https://doi.org/10.5281/zenodo.5119983">https://doi.org/10.5281/zenodo.5119983</a></li>
       <li><a href="https://github.com/usc-isi-i2/wd-quality/tree/main/Scripts">Constraint validation queries</a>. These are the queries needed  to reproduce the contraint validation analysis on Wikidata. Note that these constraints need a unique folder configuration of the repository to work, which is found in the <a href="https://github.com/usc-isi-i2/wd-quality#sample-queries">readme file</a></li>
     </ul>
 
     <h3>An instantiated query template in detail</h3>
-    The following snippet explains step by step how one of the item-requires-statement constraint is validated in Wikidata:
+    <p>The following snippet explains step by step how one of the item-requires-statement constraint is validated in Wikidata. This is just one of the constraint types we support in our analysis, and one of the most popular ones:</p>
     <pre>
 # Item requires statement constraint on property P1321:
 # place of origin (Switzerland).
